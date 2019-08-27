@@ -24,6 +24,13 @@ namespace BetterReforges
             }
 
             if (item.maxStack == 0 || item.damage > 0 || item.useStyle != 0) {
+
+                if (item.hammer > 0 || item.pick > 0 || item.axe > 0)
+                {
+                    int index = rand.Next(0, toolModifiers.Length);
+                    return toolModifiers[index];
+                }
+
                 if (item.melee)
                 {
                     if ( item.knockBack > 0 )
@@ -78,11 +85,6 @@ namespace BetterReforges
                     return thrownModifiers[index];
                 }
 
-                if (item.hammer > 0 || item.pick > 0 || item.axe > 0)
-                {
-                    int index = rand.Next(0, toolModifiers.Length);
-                    return thrownModifiers[index];
-                }
             }
 
             return -1;
