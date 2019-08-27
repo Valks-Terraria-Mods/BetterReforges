@@ -14,6 +14,7 @@ namespace BetterReforges
         static int[] summonerModifiers = { PrefixID.Mythical };
         static int[] toolModifiers = { PrefixID.Light };
         static int[] thrownModifiers = { PrefixID.Legendary };
+        static int[] noKnockbackModifiers = { PrefixID.Demonic};
 
         public override int ChoosePrefix(Item item, UnifiedRandom rand) {
             if (item.accessory)
@@ -25,8 +26,16 @@ namespace BetterReforges
             if (item.maxStack == 0 || item.damage > 0 || item.useStyle != 0) {
                 if (item.melee)
                 {
-                    int index = rand.Next(0, meleeModifiers.Length);
-                    return meleeModifiers[index];
+                    if ( knockBack > 0 )
+                    {
+                        int index = rand.Next(0, noKnockbackModifiers.Length);
+                        return noKnockbackModifiers[index];
+                    } 
+                    else
+                    {
+                        int index = rand.Next(0, meleeModifiers.Length);
+                        return meleeModifiers[index];
+                    }
                 }
 
                 if (item.ranged)
@@ -37,8 +46,16 @@ namespace BetterReforges
 
                 if (item.magic)
                 {
-                    int index = rand.Next(0, mageModifiers.Length);
-                    return mageModifiers[index];
+                    if ( knockBack > 0 )
+                    {
+                        int index = rand.Next(0, noKnockbackModifiers.Length);
+                        return noKnockbackModifiers[index];
+                    } 
+                    else
+                    {
+                        int index = rand.Next(0, mageModifiers.Length);
+                        return mageModifiers[index];
+                    }
                 }
 
                 if (item.summon)
