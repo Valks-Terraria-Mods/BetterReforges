@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -14,6 +14,7 @@ namespace BetterReforges
         static int[] summonerModifiers = { PrefixID.Mythical };
         static int[] toolModifiers = { PrefixID.Light };
         static int[] thrownModifiers = { PrefixID.Legendary };
+        static int[] noKnockbackModifiers = { PrefixID.Demonic};
 
         public override int ChoosePrefix(Item item, UnifiedRandom rand) {
             if (item.accessory)
@@ -23,22 +24,53 @@ namespace BetterReforges
             }
 
             if (item.maxStack == 0 || item.damage > 0 || item.useStyle != 0) {
+
+                if (item.hammer > 0 || item.pick > 0 || item.axe > 0)
+                {
+                    int index = rand.Next(0, toolModifiers.Length);
+                    return toolModifiers[index];
+                }
+
                 if (item.melee)
                 {
-                    int index = rand.Next(0, meleeModifiers.Length);
-                    return meleeModifiers[index];
+                    if ( item.knockBack > 0 )
+                    {
+                        int index = rand.Next(0, meleeModifiers.Length);
+                        return meleeModifiers[index];
+                    }
+                    else
+                    {
+                        int index = rand.Next(0, noKnockbackModifiers.Length);
+                        return noKnockbackModifiers[index];
+                    }
                 }
 
                 if (item.ranged)
                 {
-                    int index = rand.Next(0, rangeModifiers.Length);
-                    return rangeModifiers[index];
+                    if (item.knockBack > 0)
+                    {
+                        int index = rand.Next(0, rangeModifiers.Length);
+                        return rangeModifiers[index];
+                    }
+                    else
+                    {
+                        int index = rand.Next(0, noKnockbackModifiers.Length);
+                        return noKnockbackModifiers[index];
+                    }
                 }
 
                 if (item.magic)
                 {
-                    int index = rand.Next(0, mageModifiers.Length);
-                    return mageModifiers[index];
+                    if ( item.knockBack > 0 )
+                    {
+                        int index = rand.Next(0, mageModifiers.Length);
+                        return mageModifiers[index];
+                    } 
+                    else
+                    {
+                        int index = rand.Next(0, noKnockbackModifiers.Length);
+                        return noKnockbackModifiers[index];
+                    }
                 }
 
                 if (item.summon)
@@ -53,11 +85,6 @@ namespace BetterReforges
                     return thrownModifiers[index];
                 }
 
-                if (item.hammer > 0 || item.pick > 0 || item.axe > 0)
-                {
-                    int index = rand.Next(0, toolModifiers.Length);
-                    return thrownModifiers[index];
-                }
             }
 
             return -1;
