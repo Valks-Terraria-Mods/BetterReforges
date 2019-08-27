@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -26,35 +26,43 @@ namespace BetterReforges
             if (item.maxStack == 0 || item.damage > 0 || item.useStyle != 0) {
                 if (item.melee)
                 {
-                    if ( knockBack > 0 )
-                    {
-                        int index = rand.Next(0, noKnockbackModifiers.Length);
-                        return noKnockbackModifiers[index];
-                    } 
-                    else
+                    if ( item.knockBack > 0 )
                     {
                         int index = rand.Next(0, meleeModifiers.Length);
                         return meleeModifiers[index];
+                    }
+                    else
+                    {
+                        int index = rand.Next(0, noKnockbackModifiers.Length);
+                        return noKnockbackModifiers[index];
                     }
                 }
 
                 if (item.ranged)
                 {
-                    int index = rand.Next(0, rangeModifiers.Length);
-                    return rangeModifiers[index];
+                    if (item.knockBack > 0)
+                    {
+                        int index = rand.Next(0, rangeModifiers.Length);
+                        return rangeModifiers[index];
+                    }
+                    else
+                    {
+                        int index = rand.Next(0, noKnockbackModifiers.Length);
+                        return noKnockbackModifiers[index];
+                    }
                 }
 
                 if (item.magic)
                 {
-                    if ( knockBack > 0 )
-                    {
-                        int index = rand.Next(0, noKnockbackModifiers.Length);
-                        return noKnockbackModifiers[index];
-                    } 
-                    else
+                    if ( item.knockBack > 0 )
                     {
                         int index = rand.Next(0, mageModifiers.Length);
                         return mageModifiers[index];
+                    } 
+                    else
+                    {
+                        int index = rand.Next(0, noKnockbackModifiers.Length);
+                        return noKnockbackModifiers[index];
                     }
                 }
 
