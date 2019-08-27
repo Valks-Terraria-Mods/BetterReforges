@@ -1,4 +1,4 @@
 author = valkyrienyanko
-version = 1.0
+version = 1.4
 displayName = First Try
 homepage = https://discord.gg/thMupbv
