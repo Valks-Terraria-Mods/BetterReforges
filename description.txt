@@ -1,0 +1,4 @@
+You get the best forge on your first reforge. Depending on if it's a tool, specific weapon type or accessory. If there are more than one best reforge type, than a random type reforge of the best reforges will be chosen.
+
+2.1
+Potential fix for drills crashing game on modify.
