@@ -66,7 +66,7 @@ namespace BetterReforges
                     }
                 }
 
-                if (item.ranged)
+                if (item.ranged && item.ammo <= 0) // Makes sure the item isn't any form of ammo
                 {
                     if (item.knockBack > 0)
                     {
