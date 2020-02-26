@@ -11,7 +11,7 @@ namespace BetterReforges
         static int[] mageModifiers = { PrefixID.Mythical };
         static int[] meleeModifiers = { PrefixID.Legendary };
         static int[] rangeModifiers = { PrefixID.Unreal };
-        static int[] summonerModifiers = { PrefixID.Mythical };
+        static int[] summonerModifiers = { PrefixID.Ruthless };
         static int[] toolModifiers = { PrefixID.Light };
         static int[] thrownModifiers = { PrefixID.Legendary };
         static int[] noKnockbackModifiers = { PrefixID.Demonic };
