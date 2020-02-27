@@ -11,14 +11,14 @@ namespace BetterReforges
         static int[] mageModifiers = { PrefixID.Mythical };
         static int[] meleeModifiers = { PrefixID.Legendary };
         static int[] rangeModifiers = { PrefixID.Unreal };
-        static int[] summonerModifiers = { PrefixID.Mythical };
+        static int[] summonerModifiers = { PrefixID.Ruthless };
         static int[] toolModifiers = { PrefixID.Light };
         static int[] thrownModifiers = { PrefixID.Legendary };
         static int[] noKnockbackModifiers = { PrefixID.Demonic };
 
         public override int ChoosePrefix(Item item, UnifiedRandom rand)
         {
-            switch (item.netID)
+            /*switch (item.netID)
             {
                 case 385:
                 case 386:
@@ -35,7 +35,7 @@ namespace BetterReforges
                     return PrefixID.Demonic;
                 default:
                     break;
-            }
+            }*/
 
             if (item.accessory)
             {
@@ -48,8 +48,13 @@ namespace BetterReforges
 
                 if (item.hammer > 0 || item.pick > 0 || item.axe > 0)
                 {
-                    int index = rand.Next(0, toolModifiers.Length);
-                    return toolModifiers[index];
+                    if (item.channel == true) // Checks for Drills
+                    {
+                        int index2 = rand.Next(0, noKnockbackModifiers.Length);
+                        return noKnockbackModifiers[index2];
+                    }
+                    int index1 = rand.Next(0, toolModifiers.Length);
+                    return toolModifiers[index1];
                 }
 
                 if (item.melee)
@@ -66,7 +71,7 @@ namespace BetterReforges
                     }
                 }
 
-                if (item.ranged)
+                if (item.ranged && item.ammo <= 0) // Makes sure the item isn't any form of ammo
                 {
                     if (item.knockBack > 0)
                     {
