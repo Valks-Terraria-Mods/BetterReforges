@@ -39,8 +39,21 @@ namespace BetterReforges
 
             if (item.accessory)
             {
-                int index = rand.Next(0, accessoryModifiers.Length);
-                return accessoryModifiers[index];
+                if (BetterReforgesConfig.Instance.chosenType == BetterReforgesConfig.accessoryType.All)
+                {
+                    int index = rand.Next(0, accessoryModifiers.Length);
+                    return accessoryModifiers[index];
+                }
+                else if (BetterReforgesConfig.Instance.chosenType == BetterReforgesConfig.accessoryType.Warding)
+                    return PrefixID.Warding;
+                else if (BetterReforgesConfig.Instance.chosenType == BetterReforgesConfig.accessoryType.Quick)
+                    return PrefixID.Quick;
+                else if (BetterReforgesConfig.Instance.chosenType == BetterReforgesConfig.accessoryType.Menacing)
+                    return PrefixID.Menacing;
+                else if (BetterReforgesConfig.Instance.chosenType == BetterReforgesConfig.accessoryType.Lucky)
+                    return PrefixID.Lucky;
+                else if (BetterReforgesConfig.Instance.chosenType == BetterReforgesConfig.accessoryType.Arcane)
+                    return PrefixID.Arcane;
             }
 
             if (item.maxStack == 0 || item.damage > 0 || item.useStyle != 0)
