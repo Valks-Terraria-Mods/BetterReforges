@@ -8,7 +8,7 @@ namespace BetterReforges
     [Label("First Try Config")]
     public class BetterReforgesConfig : ModConfig
     {
-        public override ConfigScope Mode => ConfigScope.ServerSide;
+        public override ConfigScope Mode => ConfigScope.ClientSide;
 
         public static BetterReforgesConfig Instance;
 
