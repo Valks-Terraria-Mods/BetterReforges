@@ -10,3 +10,5 @@ static int[] toolModifiers = { PrefixID.Light };
 static int[] thrownModifiers = { PrefixID.Legendary };
 static int[] noKnockbackModifiers = { PrefixID.Demonic};
 ```
+
+I will not be updating this mod to 1.4.
